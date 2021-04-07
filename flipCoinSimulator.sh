@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash 
 
 heads=0
 tails=0
-for((i=1;i<21;i++))
+win=21
+while (( $heads < $win && $tails < $win ))
 do
-
 	flipCoin=$((RANDOM%2))
 	if [ $flipCoin -eq 1 ]
 	then
@@ -13,4 +13,16 @@ do
 		(( tails++ ))
 	fi
 done
-echo "Heads won: "$heads "Tails won: " $tails
+if [ $heads -le $tails ]
+then
+	echo "Tails won: " $tails
+	echo Tails win by $(($tails-$heads))
+elif [ $tails -le $heads ]
+then
+	echo "Heads won: " $heads	
+	echo Heads win by $(($heads-$tails))
+else 
+	echo Its a tie
+fi
+
+
